@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Event Details" if:true={eventDetails}>
+        <div class="slds-p-around_medium">
+            <p>Name: {eventDetails.Name}</p>
+            <p>Status: {eventDetails.Status__c}</p>
+            <!-- Add more event details here -->
+            <lightning-button label="Approve Event" onclick={handleApprove}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

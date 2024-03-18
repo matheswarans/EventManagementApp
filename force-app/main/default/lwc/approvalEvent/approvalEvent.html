@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Approval Screen">
+        <template if:true={events}>
+            <lightning-datatable data={events} columns={columns} key-field="Id" 
+             onrowselection={handleRowSelection}>
+
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            <p>{error}</p>
+        </template>
+        <!-- <template if:true={selectedEventId}>
+            Include the Event Details component here
+            <c-event-details event-id={selectedEventId}></c-event-details>
+        </template> -->
+    </lightning-card>
+</template>

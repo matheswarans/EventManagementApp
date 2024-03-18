@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="Approval Process">
+        <c-approval-event oneventselect={handleEventSelect} ></c-approval-event>
+        
+        <c-event-details if:true={eventId} event-id={eventId} ></c-event-details>
+        <!-- onrefreshevent={handleRefreshApprovalEvent} -->
+    </lightning-card>
+</template>

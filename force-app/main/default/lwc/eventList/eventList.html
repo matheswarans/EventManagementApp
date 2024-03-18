@@ -1,0 +1,68 @@
+<template>    
+
+    <lightning-card
+      variant="Narrow"
+      title="Upcoming Events"
+      icon-name="standard:event"
+    >
+     <!-- Show Login button if participant is not logged in -->
+     <template if:false={participantRecord.isLoggedIn}>
+        <div class="slds-form slds-form_stacked">
+            <lightning-input label="Email" type="email" value={email} onchange={handleEmailChange}></lightning-input>
+            <lightning-button label="Login" onclick={handleLogin}></lightning-button>
+        </div>
+    </template>
+
+    <!-- Show participant email if logged in -->
+    <template if:true={participantRecord.isLoggedIn}>
+        <div>Logged in as {participantRecord.Email}</div>
+    </template>
+    
+      <div class="slds-m-around_small">
+        <template if:true={error}>
+          {error}
+        </template>
+      </div>
+      <div class="slds-m-around_small">
+        <c-lwcsearchcomponent
+          search-label="Event Name"
+          show-label="true"
+          onsearch={handleSearch}
+        >
+        </c-lwcsearchcomponent>
+        &nbsp;
+        <lightning-input
+          type="datetime"
+          value={startdattime}
+          onchange={handleStartDate}
+          label="Start Date Time"
+        >
+        </lightning-input>
+        &nbsp;
+        <!-- <c-lwcsearchcomponent
+          search-label="Event Location"
+          show-label="true"
+          onsearch={handleLocationSearch}
+        >
+        </c-lwcsearchcomponent> -->
+      </div>
+      <div class="slds-m-around_small">
+        <lightning-datatable
+          key-field="Id"
+          data={recordsToDisplay}         
+          columns={columnsList}
+          onrowselection={handleRowSelection}
+        >
+        </lightning-datatable>
+        <!-- <lightning-datatable data={events} columns={columns} key-field="Id" 
+             onrowselection={handleRowSelection}></lightning-datatable> -->
+
+      </div>
+      <template if:true={buttonEnable}>
+        <lightning-button label="Register Event" onclick={handleRegister}></lightning-button>
+      </template>
+    </lightning-card>
+  </template>
+
+  <!-- show-row-number-column
+  hide-checkbox-column -->
